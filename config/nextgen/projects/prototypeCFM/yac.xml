@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- yet another config -->
+<generator>
+	<file name="bean" fileNameAppend="" fileType="cfc" templateType="cfm">
+		<include file="bean/setMemento.cfm" />
+		<include file="bean/validate.cfm" />
+		<include file="bean/getset.cfm" />
+		<include file="bean/dump.cfm" />
+	</file>
+	<file name="dao" fileNameAppend="DAO" filetype="cfc" templateType="cfm">
+		<include file="dao/create.cfm" />
+		<include file="dao/read.cfm" />
+		<include file="dao/update.cfm" />
+		<include file="dao/delete.cfm" />
+		<include file="dao/exists.cfm" />
+		<include file="dao/save.cfm" />
+		<include file="dao/queryRowToStruct.cfm" />
+	</file>
+	<file name="gateway" filetype="cfc" templateType="cfm">
+		<include file="gateway/getByAttributesQuery.cfm" />
+		<include file="gateway/getByAttributes.cfm" />
+		<include file="gateway/queryRowToStruct.cfm" />
+	</file>
+	<file name="service" filetype="cfc" templateType="cfm">
+		<include file="service/createBean.cfm" />
+		<include file="service/getBean.cfm" />
+		<include file="service/getBeans.cfm" />
+		<include file="service/saveBean.cfm" />
+		<include file="service/deleteBean.cfm" />
+	</file>
+	<file name="to" filetype="cfc" templateType="cfm" />
+	<file name="coldspring" filetype="xml" templateType="cfm" />
+	<file name="VO" filetype="as" templateType="cfm" />
+</generator>

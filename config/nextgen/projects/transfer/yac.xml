@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- yet another config -->
+<generator>
+	<file name="gateway" fileType="cfc">
+		<include file="gateway/getByAttributesQuery.xsl" />
+		<include file="gateway/getByAttributes.xsl" />
+	</file>
+	<file name="service" fileType="cfc">
+		<include file="service/createBean.xsl" />
+		<include file="service/getBean.xsl" />
+		<include file="service/getBeans.xsl" />
+		<include file="service/saveBean.xsl" />
+		<include file="service/deleteBean.xsl" />
+	</file>
+	<file name="decorator" fileType="cfc" fileNameAppend="">
+		<include file="decorator/validate.xsl" />
+	</file>
+	<file name="transfer" fileType="xml" />
+	<file name="coldspring" fileType="xml" />
+</generator>

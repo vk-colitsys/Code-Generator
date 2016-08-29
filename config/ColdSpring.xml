@@ -1,0 +1,37 @@
+<beans>
+	<!-- MODEL GLUE CONFIG -->
+	<bean id="modelglue.modelGlueConfiguration" class="ModelGlue.gesture.configuration.ModelGlueConfiguration">
+		<property name="reload"><value>true</value></property>
+		<property name="debug"><value>false</value></property>
+		<property name="eventValue"><value>event</value></property>
+		<property name="defaultEvent"><value>page.home</value></property>
+		<property name="missingEvent"><value>page.missing</value></property>
+		<property name="defaultExceptionHandler"><value>page.error</value></property>
+		<property name="reloadPassword"><value>true</value></property>
+		<property name="reloadKey"><value>reinit</value></property>
+		<property name="configurationPath"><value>config/ModelGlue.xml</value></property>
+		<property name="applicationMapping"><value>/nextgenerator</value></property>
+		<property name="viewMappings"><value>/nextgenerator/views</value></property>
+		<property name="generationEnabled"><value>false</value></property>
+		<property name="rescaffold"><value>false</value></property>
+	</bean>
+	
+	<!-- NEXT-GENERATOR SERVICES -->
+	<!-- THESE SETTINGS NEED CONFIGURING WHEN INSTALLING THE APPLICATION, PLEASE READ COMMENTS BELOW
+		 OR USE THE ANT BUILD.XML TO SETUP -->
+	
+	<!-- use 	class="nextgenerator.model.adminAPIFacade" for ColdFusion 
+		 or		class="nextgenerator.model.adminAPIFacadeRailo" for Railo
+	-->
+	<bean id="dsnService" class="nextgenerator.model.adminAPIFacadeRailo">
+		<constructor-arg name="administratorPassword">
+			<value>[password]</value> <!-- YOUR ADMIN API PASSWORD -->
+		</constructor-arg>
+	</bean>
+	
+	<bean id="templateService" class="nextgenerator.model.templateService">
+		<constructor-arg name="xslBasePath">
+			<value>config/nextgen</value>
+		</constructor-arg>
+	</bean>
+</beans>

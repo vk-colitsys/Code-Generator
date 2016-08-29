@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modelglue>
+	<controllers>
+		<controller id="Controller" type="nextgenerator.controller.Controller" beans="dsnService,templateService">
+			<message-hanlder message="getDSNs" function="getDSNs" />
+			<message-hanlder message="getTables" function="getTables" />
+			<message-hanlder message="getProjectTemplates" function="getProjectTemplates" />
+			<message-hanlder message="applyTemplate" function="applyTemplate" />
+			<message-hanlder message="zipFiles" function="zipFiles" />
+		</controller>
+	</controllers>
+	
+	<event-types>
+		<event-type name="template">
+			<after> <results> <result do="page.template"/> </results> </after>
+		</event-type>
+	</event-types>
+		
+	<event-handlers>
+	<!-- Generic events -->
+		<event-handler name="page.error" type="template">
+			<views>
+				<include name="body" template="_templates/error.cfm" />
+			</views>
+		</event-handler>
+		<event-handler name="page.missing" type="template">
+			<views>
+				<include name="body" template="_templates/missingEvent.cfm" />
+			</views>
+		</event-handler>
+
+	<!-- Templates -->
+		<event-handler access="private" name="page.template">
+			<views>
+				<include name="main" template="_templates/main.cfm" />
+			</views>
+		</event-handler>
+	
+	<!-- Defacto events -->
+		<event-handler name="page.home" type="template">
+			<broadcasts>
+				<message name="getDSNs" />
+				<message name="getProjectTemplates" />
+			</broadcasts>
+			<views>
+				<include name="body" template="generator.cfm" />
+			</views>
+		</event-handler>
+		
+		<event-handler name="page.success" type="template">
+			<views>
+				<include name="body" template="success.cfm" />
+			</views>
+		</event-handler>
+		
+		<event-handler name="page.about" type="template">
+			<views>
+				<include name="body" template="about.cfm" />
+			</views>
+		</event-handler>
+		
+		<event-handler name="page.help" type="template">
+			<views>
+				<include name="body" template="help.cfm" />
+			</views>
+		</event-handler>
+		
+		<event-handler name="ajax.getTables">
+			<broadcasts>
+				<message name="getTables" />
+			</broadcasts>
+			<views>
+				<include name="body" template="json_tables.cfm" />
+			</views>
+		</event-handler>
+		
+		<event-handler name="action.writetoserver">
+			<broadcasts>
+				<message name="applyTemplate" />
+			</broadcasts>
+			<results>
+				<result do="page.success" redirect="true" />
+			</results>
+		</event-handler>
+		
+		<event-handler name="action.zip">
+			<broadcasts>
+				<message name="applyTemplate" />
+				<message name="zipFiles" />
+			</broadcasts>
+			<views>
+				<include name="body" template="zip.cfm" />
+			</views>
+		</event-handler>
+	</event-handlers>
+	
+</modelglue>
+

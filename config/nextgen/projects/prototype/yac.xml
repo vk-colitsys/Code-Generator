@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- yet another config -->
+<generator>
+	<file name="bean" fileNameAppend="" fileType="cfc">
+		<include file="bean/setMemento.xsl" />
+		<include file="bean/validate.xsl" />
+		<include file="bean/getset.xsl" />
+		<include file="bean/dump.xsl" />
+	</file>
+	<file name="dao" fileNameAppend="DAO" filetype="cfc">
+		<include file="dao/create.xsl" />
+		<include file="dao/read.xsl" />
+		<include file="dao/update.xsl" />
+		<include file="dao/delete.xsl" />
+		<include file="dao/exists.xsl" />
+		<include file="dao/save.xsl" />
+		<include file="dao/queryRowToStruct.xsl" />
+	</file>
+	<file name="gateway" filetype="cfc">
+		<include file="gateway/getByAttributesQuery.xsl" />
+		<include file="gateway/getByAttributes.xsl" />
+		<include file="gateway/queryRowToStruct.xsl" />
+	</file>
+	<file name="service" filetype="cfc">
+		<include file="service/createBean.xsl" />
+		<include file="service/getBean.xsl" />
+		<include file="service/getBeans.xsl" />
+		<include file="service/saveBean.xsl" />
+		<include file="service/deleteBean.xsl" />
+	</file>
+	<file name="to" filetype="cfc" />
+	<file name="coldspring" filetype="xml" />
+	<file name="VO" filetype="as" />
+</generator>

@@ -1,0 +1,51 @@
+<!--
+	Ant script to setup the Next-Generator application
+	
+	If you're using CFEclipse, or you know how to use Ant (http://ant.apache.org), 
+	just run this file to create a ready-to-go Model-Glue application.
+	
+	To run it in CFEclipse, it's Alt-Shift-X -> Q
+-->
+
+<project name="New Next-Generator Project" default="build" basedir=".">
+	<property name="dsn.service.coldfusion" value="nextgenerator.model.adminAPIFacade" />
+	<property name="dsn.service.railo" value="nextgenerator.model.adminAPIFacadeRailo" />
+	<property name="coldspring.xml" value="config/ColdSpring.xml" />
+	
+	<target name="build" depends="-init,-cfcheck,-railocheck,-finalise">
+		<echo>All done!</echo>
+	</target>
+	
+	<!-- get user input -->
+	<target name="-init" description="I am the first target and take all user input ready for processing">
+		<input message="Railo (railo) or Coldfusion (cf)?" defaultvalue="railo" validargs="railo,cf" addproperty="input.engine" />
+		<condition property="engine.is.cf">
+			<equals arg1="${input.engine}" arg2="cf" />
+		</condition>
+		
+		<input message="Please enter your ${input.engine} administrator password:" addproperty="admin.password" />
+	</target>
+	
+	<!-- edit coldspring -->
+	<target name="-finalise">
+		<replaceregexp file="${coldspring.xml}" match='id="dsnService" class=".*?"' replace='id="dsnService" class="${dsn.service}"' />
+		<replaceregexp file="${coldspring.xml}" match='\[password\]' replace='${admin.password}' />
+	</target>
+	
+	<!-- set dsn service -->
+	<target name="-cfcheck" if="engine.is.cf">
+		<property name="dsn.service" value="${dsn.service.coldfusion}" />
+	</target>
+	<target name="-railocheck" unless="engine.is.cf">
+		<property name="dsn.service" value="${dsn.service.railo}" />
+	</target>
+	
+	<!-- set projects path -->
+	<target name="-windowscheck" if="os.is.windoze">
+		<property name="dsn.service" value="${dsn.service.cf}" />
+	</target>
+	<target name="-unixcheck" unless="os.is.windoze">
+		<property name="dsn.service" value="${dsn.service.railo}" />
+	</target>
+		
+</project> 

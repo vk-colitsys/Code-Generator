@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- yet another config -->
+<generator>
+	<file name="dao" filenameAppend="DAO" filetype="cfc" transformer="dao.xsl" directory="dao">
+		<include file="dao/create.xsl" />
+		<include file="dao/read.xsl" />
+		<include file="dao/update.xsl" />
+		<include file="dao/delete.xsl" />
+		<include file="dao/exists.xsl" />
+	</file>
+	<file name="ibo" filenameAppend="IBO" filetype="cfc" transformer="ibo.xsl" directory="ibo" />
+</generator>
